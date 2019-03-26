@@ -18,7 +18,7 @@ all:    $(NAME)
 
 $(NAME):	$(OBJ)
 	make -C../lib/
-	gcc -o $(NAME) $(OBJ)
+	gcc -o $(NAME) $(OBJ) -L../lib/ -lmy
 
 clean:
 	make clean -C../lib/

@@ -19,6 +19,8 @@ SRC	=	get_char_pos.c		\
 		my_strdup.c			\
 		my_strlen.c			\
 		my_tabledup.c		\
+		destroy_table.c		\
+		display_table.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

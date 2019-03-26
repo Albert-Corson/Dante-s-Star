@@ -30,6 +30,8 @@ long long my_getnbr(char const *str);
 char **my_tablendup(char **table, int lim, int to_malloc);
 unsigned long long my_put_err_nbr(signed long long int nb);
 int my_putchar_err(char c);
-int my_nisnum(char *str, int lim);
+void display_table(char **table);
+void destroy_table(char **table);
+int my_nisnum(char const *str, int lim);
 
 #endif /* MY_H_ */

@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-int my_nisnum(char *str, int lim)
+int my_nisnum(char const *str, int lim)
 {
     int i = 0;
 
