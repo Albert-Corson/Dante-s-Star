@@ -5,7 +5,7 @@
 ** display_maze
 */
 
-#include "dante.h"
+#include "generator.h"
 
 void display_maze(tile_t *maze)
 {

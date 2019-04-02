@@ -5,7 +5,7 @@
 ** maze_init
 */
 
-#include "dante.h"
+#include "generator.h"
 
 void append_tile_hor(tile_t **list, tile_t *new)
 {

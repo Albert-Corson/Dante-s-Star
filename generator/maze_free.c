@@ -5,7 +5,7 @@
 ** maze_free
 */
 
-#include "dante.h"
+#include "generator.h"
 
 void destroy_maze_row(tile_t *row)
 {

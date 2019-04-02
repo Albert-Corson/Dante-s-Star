@@ -10,6 +10,10 @@ SRC	=	main.c				\
 		maze_init.c			\
 		maze_display.c		\
 		maze_free.c			\
+		stack_tool.c		\
+		random_nbr.c		\
+		depth_first_tools.c	\
+		depth_first.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "dante.h"
+#include "solver.h"
 
 int main(int argc, const char **argv)
 {
