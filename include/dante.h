@@ -9,14 +9,32 @@
     #define DANTE_H_
 
 #include "my.h"
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
 
-typedef struct vector_s {
+typedef struct tile_s tile_t;
+typedef struct vector_s vector_t;
+
+struct tile_s {
+    int visited;
+    char type;
+    tile_t *up;
+    tile_t *down;
+    tile_t *left;
+    tile_t *right;
+};
+
+struct vector_s {
     int x;
     int y;
-} vector_t;
+};
 
 // GENERATOR
-
+tile_t *maze_format(vector_t size, int perfect);
+void display_maze(tile_t *maze);
+tile_t *maze_init(vector_t size);
+void destroy_maze(tile_t *maze);
 
 // SOLVER
 

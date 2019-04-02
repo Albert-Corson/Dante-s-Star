@@ -5,7 +5,11 @@
 ## makefile
 ##
 
-SRC	=	main.c	\
+SRC	=	main.c				\
+		maze_format.c		\
+		maze_init.c			\
+		maze_display.c		\
+		maze_free.c			\
 
 OBJ	=	$(SRC:.c=.o)
 
