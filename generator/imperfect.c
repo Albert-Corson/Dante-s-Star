@@ -25,7 +25,7 @@ static tile_t *random_move(tile_t *tile)
     return (tiles[nbr]);
 }
 
-static int check_neighbor(tile_t *tile)
+static int check_wall_neighbor(tile_t *tile)
 {
     int n = 0;
 
@@ -43,11 +43,11 @@ static int check_neighbor(tile_t *tile)
     return (0);
 }
 
-void make_imperfect(tile_t *maze)
+void destroy_random_walls(tile_t *maze)
 {
     int n = 10;
 
-    while (!check_neighbor(maze)) {
+    while (!check_wall_neighbor(maze)) {
         while (n > 0) {
             maze = random_move(maze);
             --n;
@@ -66,7 +66,7 @@ void imperfect_maze(tile_t *maze, vector_t size)
     FAIL_IF_VOID(size.x == 1 || size.y == 1);
     nb_tiles /= 60;
     while (n <= nb_tiles) {
-        make_imperfect(maze);
+        destroy_random_walls(maze);
         ++n;
     }
     while (maze->right)
@@ -74,7 +74,7 @@ void imperfect_maze(tile_t *maze, vector_t size)
     while (maze->down)
         maze = maze->down;
     while (n > 1) {
-        make_imperfect(maze);
+        destroy_random_walls(maze);
         --n;
     }
 }
