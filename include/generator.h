@@ -57,6 +57,9 @@ void place_end_point(tile_t *maze);
 void depth_first(tile_t *maze, int nb_tiles);
 void set_visited(tile_t *tile, int *unvisited);
 
+// IMPERFECT MAZE
+void imperfect_maze(tile_t *maze, vector_t size);
+
 #define VECT(x, y) (vector_t){x, y}
 #define FAIL_IF(cond, ret) if (cond) return (ret)
 #define FAIL_IF_VOID(cond) if (cond) return

@@ -12,7 +12,7 @@ tile_t *maze_format(vector_t size, int perfect)
     tile_t *maze = maze_init(size);
 
     if (!perfect)
-        depth_first(maze, size.x * size.y);
+        imperfect_maze(maze, size);
     else
         depth_first(maze, size.x * size.y);
     return (maze);

@@ -14,6 +14,7 @@ SRC	=	main.c				\
 		random_nbr.c		\
 		depth_first_tools.c	\
 		depth_first.c		\
+		imperfect.c
 
 OBJ	=	$(SRC:.c=.o)
 
