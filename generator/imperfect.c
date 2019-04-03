@@ -15,7 +15,7 @@ static tile_t *random_move(tile_t *tile)
     if (tile->down)
         tiles[0] = tile->down;
     if (tile->up)
-       tiles[1] = tile->up;
+        tiles[1] = tile->up;
     if (tile->right)
         tiles[2] = tile->right;
     if (tile->left)

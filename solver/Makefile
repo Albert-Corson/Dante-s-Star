@@ -5,7 +5,9 @@
 ## makefile
 ##
 
-SRC	=	main.c	\
+SRC	=	main.c			\
+		get_maze.c		\
+		solve_maze.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
