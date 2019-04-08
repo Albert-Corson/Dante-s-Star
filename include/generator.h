@@ -38,7 +38,7 @@ struct vector_s {
 
 // MAZE
 tile_t *maze_format(vector_t size, int perfect);
-void display_maze(tile_t *maze);
+void display_maze(tile_t *maze, vector_t size);
 tile_t *maze_init(vector_t size);
 void destroy_maze(tile_t *maze);
 
@@ -61,7 +61,7 @@ void set_visited(tile_t *tile, int *unvisited);
 void imperfect_maze(tile_t *maze, vector_t size);
 
 #define VECT(x, y) (vector_t){x, y}
-#define FAIL_IF(cond, ret) if (cond) return (ret)
-#define FAIL_IF_VOID(cond) if (cond) return
+#define FAIL_IF(cond, ret)  if (cond)   return (ret);
+#define FAIL_IF_VOID(cond)  if (cond)   return;
 
 #endif /* !GEN_H_ */

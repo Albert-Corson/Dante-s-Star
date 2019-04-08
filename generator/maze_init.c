@@ -54,15 +54,20 @@ tile_t *maze_create_row(int size, tile_t *upper)
 {
     int x = 0;
     tile_t *ret = NULL;
+    tile_t *prev = NULL;
     tile_t *tile = NULL;
 
     while (x < size) {
         tile = tile_new('X');
-        append_tile_hor(&ret, tile);
+        append_tile_hor(&prev, tile);
         if (upper) {
             append_tile_vert(&upper, tile);
             upper = upper->right;
         }
+        if (x == 0)
+            ret = prev;
+        else
+            prev = prev->right;
         ++x;
     }
     return (ret);
@@ -71,16 +76,15 @@ tile_t *maze_create_row(int size, tile_t *upper)
 tile_t *maze_init(vector_t size)
 {
     tile_t *above = NULL;
-    tile_t *layer = NULL;
-    tile_t *maze = NULL;
-    int y = 0;
+    tile_t *layer = maze_create_row(size.x, above);
+    tile_t *maze = layer;
+    int y = 1;
 
     while (y < size.y) {
         above = layer;
         layer = maze_create_row(size.x, above);
-        if (y == 0)
-            maze = layer;
         ++y;
     }
+    place_end_point(layer);
     return (maze);
 }

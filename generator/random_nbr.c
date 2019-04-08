@@ -18,16 +18,15 @@ int readjust_nb(int nb, int min, int max)
 
 int random_nbr(int min, int max)
 {
+    float n = (float)rand() / RAND_MAX;
     int tmp = min;
-    int ret = 0;
 
     if (min > max) {
         min = max;
         max = tmp;
-    }
-    if (min == max)
+    } else if (min == max)
         return (min);
-    ret = ((float)rand() / RAND_MAX) * ((max - min) + 1) + min;
-    ret = readjust_nb(ret, min, max);
-    return (ret);
+    if (n >= 0.99999)
+        return (max);
+    return ((n * (max - min + 1) + min));
 }

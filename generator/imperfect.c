@@ -7,27 +7,38 @@
 
 #include "generator.h"
 
-static tile_t *random_move(tile_t *tile)
+static tile_t *random_vert(tile_t *tile)
 {
-    int nbr = -1;
-    tile_t *tiles[4] = {NULL, NULL, NULL, NULL};
+    int i = -1;
+    tile_t *tiles[2] = {NULL, NULL};
 
-    FAIL_IF(!tile, NULL);
-    if (tile->down && tile->down->visited)
-        tiles[0] = tile->down;
-    if (tile->up && tile->up->visited)
-        tiles[1] = tile->up;
-    if (tile->right && tile->right->visited)
-        tiles[2] = tile->right;
-    if (tile->left && tile->left->visited)
-        tiles[3] = tile->left;
-    FAIL_IF(!tiles[0] && !tiles[1] && !tiles[2] && !tiles[3], NULL);
-    while (nbr == -1 || tiles[nbr] == NULL) {
-        nbr = random_nbr(0, 3);
-        if (nbr < 0 || nbr > 3)
-            return (NULL);
+    if (tile && tile->down && tile->down->visited) {
+        ++i;
+        tiles[i] = tile->down;
     }
-    return (tiles[nbr]);
+    if (tile && tile->up && tile->up->visited) {
+        ++i;
+        tiles[i] = tile->up;
+    }
+    FAIL_IF(i == -1, NULL);
+    return (tiles[random_nbr(0, i)]);
+}
+
+static tile_t *random_hori(tile_t *tile)
+{
+    int i = -1;
+    tile_t *tiles[2] = {NULL, NULL};
+
+    if (tile && tile->left && tile->left->visited) {
+        ++i;
+        tiles[i] = tile->left;
+    }
+    if (tile && tile->right && tile->right->visited) {
+        ++i;
+        tiles[i] = tile->right;
+    }
+    FAIL_IF(i == -1, NULL);
+    return (tiles[random_nbr(0, i)]);
 }
 
 static int check_wall_neighbor(tile_t *tile)
@@ -35,57 +46,64 @@ static int check_wall_neighbor(tile_t *tile)
     int n = 0;
 
     FAIL_IF(!tile || tile->type != 'X', 0);
-    if (tile->down && tile->down->type == '*')
+    if (tile->down && tile->down->type != 'X')
         ++n;
-    if (tile->up && tile->up->type == '*')
+    if (tile->up && tile->up->type != 'X')
         ++n;
-    if (tile->left && tile->left->type == '*')
+    if (tile->left && tile->left->type != 'X')
         ++n;
-    if (tile->right && tile->right->type == '*')
+    if (tile->right && tile->right->type != 'X')
         ++n;
     if (n >= 2)
         return (1);
     return (0);
 }
 
-void destroy_random_walls(tile_t *maze, vector_t size)
+tile_t *destroy_random_wall(tile_t *maze, vector_t size)
 {
     int n = 0;
-    int nb_tiles = (size.x * size.y) / 10;
 
-    FAIL_IF_VOID(!maze);
+    FAIL_IF(!maze, NULL);
     maze->visited = 0;
     while (maze && !check_wall_neighbor(maze)) {
-        n = random_nbr(nb_tiles / 2, nb_tiles);
+        n = random_nbr(size.x * 0.15, size.x * 0.5);
         while (maze && n > 0) {
-            maze = random_move(maze);
+            maze = random_hori(maze);
+            --n;
+        }
+        n = random_nbr(size.y * 0.15, size.y * 0.5);
+        while (maze && n > 0) {
+            maze = random_vert(maze);
             --n;
         }
         if (maze)
             maze->visited = 0;
     }
     if (maze)
-        maze->type = '*';
+        maze->type = 'O';
+    return (maze);
 }
 
 void imperfect_maze(tile_t *maze, vector_t size)
 {
+    tile_t *tmp = NULL;
     int nb_tiles = size.x * size.y;
     int n = 0;
 
-    depth_first(maze, nb_tiles);
-    FAIL_IF_VOID(size.x == 1 || size.y == 1);
-    nb_tiles /= 60;
+    nb_tiles *= 0.1;
     while (n <= nb_tiles) {
-        destroy_random_walls(maze, size);
+        tmp = destroy_random_wall(maze, size);
+        maze = tmp ? tmp : maze;
         ++n;
     }
     while (maze && maze->right)
         maze = maze->right;
     while (maze && maze->down)
         maze = maze->down;
-    while (n > 1) {
-        destroy_random_walls(maze, size);
+    maze->up->type = 'O';
+    while (n > 0) {
+        tmp = destroy_random_wall(maze, size);
+        maze = tmp ? tmp : maze;
         --n;
     }
 }

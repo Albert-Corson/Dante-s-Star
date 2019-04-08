@@ -28,7 +28,7 @@ int main(int argc, const char **argv)
     FAIL_IF(size.x <= 0 || size.y <= 0, usage());
     FAIL_IF(argc == 4 && strcmp("perfect", argv[3]) != 0, usage());
     maze = maze_format(size, (argc == 4));
-    display_maze(maze);
+    display_maze(maze, size);
     destroy_maze(maze);
     return (0);
 }
