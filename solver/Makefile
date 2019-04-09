@@ -7,7 +7,6 @@
 
 SRC	=	main.c			\
 		get_maze.c		\
-		solve_maze.c	\
 		my_copycat.c	\
 		table_tools.c	\
 		solver.c		\

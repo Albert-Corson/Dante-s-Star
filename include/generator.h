@@ -6,7 +6,7 @@
 */
 
 #ifndef GEN_H_
-    #define GEN_H_
+#define GEN_H_
 
 #include <stdio.h>
 #include <string.h>
@@ -62,7 +62,7 @@ void set_visited(tile_t *tile, int *unvisited);
 void imperfect_maze(tile_t *maze, vector_t size);
 
 #define VECT(x, y) (vector_t){x, y}
-#define FAIL_IF(cond, ret)  if (cond)   return (ret);
-#define FAIL_IF_VOID(cond)  if (cond)   return;
+#define FAIL_IF(cond, ret) if (cond) return (ret);
+#define FAIL_IF_VOID(cond) if (cond) return;
 
 #endif /* !GEN_H_ */

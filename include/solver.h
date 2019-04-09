@@ -6,7 +6,7 @@
 */
 
 #ifndef SOLVE_H_
-    #define SOLVE_H_
+#define SOLVE_H_
 
 #include "generator.h"
 #include <stdlib.h>

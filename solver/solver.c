@@ -38,10 +38,9 @@ void change_map(map_t *map)
     while (y != map->height) {
         x = 0;
         while (x != map->width) {
-	        if (map->map[y][x] == 'a')
-	            map->map[y][x] = '*';
-	        x = x + 1;
-	    }
+            map->map[y][x] = map->map[y][x] == 'a' ? '*' : map->map[y][x];
+            x = x + 1;
+        }
         y = y + 1;
     }
 }

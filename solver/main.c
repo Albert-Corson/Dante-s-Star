@@ -24,7 +24,6 @@ int main(int argc, const char **argv)
         return (0);
     }
     change_map(&map);
-    // solve_maze(maze, VECT(0, 0), size);
     display_table(map.map);
     destroy_table(map.map);
     return (0);
