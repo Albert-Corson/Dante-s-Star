@@ -80,17 +80,16 @@ tile_t *destroy_random_wall(tile_t *maze, vector_t size)
             maze->visited = 0;
     }
     if (maze)
-        maze->type = 'O';
+        maze->type = '*';
     return (maze);
 }
 
 void imperfect_maze(tile_t *maze, vector_t size)
 {
     tile_t *tmp = NULL;
-    int nb_tiles = size.x * size.y;
+    int nb_tiles = (size.x * size.y) * 0.1;
     int n = 0;
 
-    nb_tiles *= 0.1;
     while (n <= nb_tiles) {
         tmp = destroy_random_wall(maze, size);
         maze = tmp ? tmp : maze;
@@ -100,7 +99,9 @@ void imperfect_maze(tile_t *maze, vector_t size)
         maze = maze->right;
     while (maze && maze->down)
         maze = maze->down;
-    maze->up->type = 'O';
+    maze->up->type = '*';
+    maze->left->type = '*';
+    maze->left->up->type = '*';
     while (n > 0) {
         tmp = destroy_random_wall(maze, size);
         maze = tmp ? tmp : maze;
