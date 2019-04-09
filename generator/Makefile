@@ -26,15 +26,12 @@ NAME	=	generator
 all:    $(NAME)
 
 $(NAME):	$(OBJ)
-	make -C../lib/
-	gcc -o $(NAME) $(OBJ) -L../lib/ -lmy
+	gcc -o $(NAME) $(OBJ)
 
 clean:
-	make clean -C../lib/
 	rm -f $(OBJ)
 
 fclean:	clean
-	make fclean -C../lib/
 	rm -f $(NAME)
 
 re:	fclean all

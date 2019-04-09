@@ -22,8 +22,8 @@ void display_maze(tile_t *maze, vector_t size)
             ++i;
         }
         write(1, curr, i);
-        my_putchar('\n');
         maze = maze->down;
+        write(1, maze ? "\n" : "\0", 1);
     }
     free(curr);
 }

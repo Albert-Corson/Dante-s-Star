@@ -8,10 +8,11 @@
 #ifndef GEN_H_
     #define GEN_H_
 
-#include "my.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 typedef struct tile_s tile_t;
 typedef struct stack_s stack_t;
