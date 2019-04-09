@@ -8,6 +8,9 @@
 SRC	=	main.c			\
 		get_maze.c		\
 		solve_maze.c	\
+		my_copycat.c	\
+		table_tools.c	\
+		solver.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -19,15 +22,12 @@ NAME	=	solver
 all:    $(NAME)
 
 $(NAME):	$(OBJ)
-	make -C../lib/
-	gcc -o $(NAME) $(OBJ) -L../lib/ -lmy
+	gcc -o $(NAME) $(OBJ)
 
 clean:
-	make clean -C../lib/
 	rm -f $(OBJ)
 
 fclean:	clean
-	make fclean -C../lib/
 	rm -f $(NAME)
 
 re:	fclean all
