@@ -23,7 +23,7 @@ void display_maze(tile_t *maze, vector_t size)
         }
         write(1, curr, i);
         maze = maze->down;
-        write(1, maze ? "\n" : "\0", 1);
+        write(1, "\n", maze ? 1 : 0);
     }
     free(curr);
 }
