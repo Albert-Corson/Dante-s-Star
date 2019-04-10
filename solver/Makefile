@@ -9,7 +9,8 @@ SRC	=	main.c			\
 		get_maze.c		\
 		my_copycat.c	\
 		table_tools.c	\
-		solver.c		\
+		maze_solver.c	\
+		stack_tool.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

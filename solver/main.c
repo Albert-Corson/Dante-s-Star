@@ -9,22 +9,18 @@
 
 int main(int argc, const char **argv)
 {
-    map_t map;
+    char **maze = NULL;
     vector_t size;
 
     FAIL_IF(argc != 2, 84);
-    map.map = get_maze(argv[1]);
-    FAIL_IF(!map.map, 84);
-    size = verify_maze(map.map);
-    map.height = size.y;
-    map.width = size.x;
+    maze = get_maze(argv[1]);
+    FAIL_IF(!maze, 84);
+    size = verify_maze(maze);
     FAIL_IF(size.x <= 0 || size.y <= 0, 84);
-    if (pars_map(0, 0, &map, 0) == -1) {
-        printf("no solution found\n");
-        return (0);
-    }
-    change_map(&map);
-    display_table(map.map);
-    destroy_table(map.map);
+    if (solve_maze(maze, size))
+        display_table(maze);
+    else
+        dprintf(2, "no solution found");
+    destroy_table(maze);
     return (0);
 }
