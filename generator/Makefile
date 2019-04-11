@@ -18,15 +18,26 @@ SRC	=	main.c				\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-W -Wall -Wextra -g
+CFLAGS	=	-W -Wall -Wextra
 CFLAGS	+= -I ../include
 
 NAME	=	generator
+
+DEBUG	?=	0
+
+ifneq ($(DEBUG), 0)
+	ifeq ($(DEBUG), 1)
+		CFLAGS += -g -g3 -ggdb
+	endif
+endif
 
 all:    $(NAME)
 
 $(NAME):	$(OBJ)
 	gcc -o $(NAME) $(OBJ)
+
+debug: fclean
+	make DEBUG=1 -C./
 
 clean:
 	rm -f $(OBJ)
@@ -36,4 +47,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY: all clean re fclean
+.PHONY: all clean re fclean debug

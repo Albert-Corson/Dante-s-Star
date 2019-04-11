@@ -9,6 +9,10 @@ all:
 	make -C./solver/
 	make -C./generator/
 
+debug:
+	make debug -C./solver/
+	make debug -C./generator/
+
 clean:
 	make clean -C./solver/
 	make clean -C./generator/

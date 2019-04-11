@@ -14,8 +14,15 @@ SRC	=	main.c			\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-W -Wall -Wextra -g
+CFLAGS	=	-W -Wall -Wextra
 CFLAGS	+= -I ../include
+
+DEBUG ?= 0
+ifneq ($(DEBUG), 0)
+	ifeq ($(DEBUG), 1)
+		CFLAGS += -g -g3 -ggdb
+	endif
+endif
 
 NAME	=	solver
 
@@ -23,6 +30,9 @@ all:    $(NAME)
 
 $(NAME):	$(OBJ)
 	gcc -o $(NAME) $(OBJ)
+
+debug: fclean
+	make DEBUG=1 -C./
 
 clean:
 	rm -f $(OBJ)
