@@ -66,12 +66,12 @@ tile_t *destroy_random_wall(tile_t *maze, vector_t size)
     FAIL_IF(!maze, NULL);
     maze->visited = 0;
     while (maze && !check_wall_neighbor(maze)) {
-        n = random_nbr(size.x * 0.15, size.x * 0.5);
+        n = random_nbr(size.x * 0.15, size.x * 0.4);
         while (maze && n > 0) {
             maze = random_hori(maze);
             --n;
         }
-        n = random_nbr(size.y * 0.15, size.y * 0.5);
+        n = random_nbr(size.y * 0.15, size.y * 0.4);
         while (maze && n > 0) {
             maze = random_vert(maze);
             --n;

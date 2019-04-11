@@ -18,7 +18,7 @@ SRC	=	main.c				\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-W -Wall -Wextra
+CFLAGS	=	-W -Wall -Wextra -O2
 CFLAGS	+= -I ../include
 
 NAME	=	generator
