@@ -44,10 +44,12 @@ int is_neighbor(vector_t curr, stack_t *try)
     return (1);
 }
 
-void put_path(char **maze, stack_t *stack, vector_t size)
+int put_path(char **maze, stack_t *stack, vector_t size)
 {
-    vector_t curr = VECT(stack->pos.x, stack->pos.x);
+    vector_t curr;
 
+    FAIL_IF(!stack, 0);
+    curr = VECT(stack->pos.x, stack->pos.y);
     maze[curr.y][curr.x] = 'o';
     while (stack) {
         while (stack && !is_neighbor(curr, stack))
@@ -56,6 +58,7 @@ void put_path(char **maze, stack_t *stack, vector_t size)
         maze[curr.y][curr.x] = 'o';
     }
     maze[size.y - 1][size.x - 1] = 'o';
+    return (1);
 }
 
 int solve_maze(char **maze, vector_t size)
@@ -78,7 +81,6 @@ int solve_maze(char **maze, vector_t size)
             stack_pop(&stack);
         i = 0;
     }
-    FAIL_IF(!stack, 0);
-    put_path(maze, stack, size);
-    return (1);
+    destroy_table((char **)visited);
+    return (put_path(maze, stack, size));
 }
