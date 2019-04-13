@@ -20,7 +20,7 @@ int main(int argc, const char **argv)
     if (solve_maze(maze, size))
         display_table(maze);
     else
-        printf("no solution found");
+        printf("no solution found\n");
     destroy_table(maze);
     return (0);
 }
