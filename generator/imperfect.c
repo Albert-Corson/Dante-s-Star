@@ -87,7 +87,7 @@ tile_t *destroy_random_wall(tile_t *maze, vector_t size)
 void imperfect_maze(tile_t *maze, vector_t size)
 {
     tile_t *tmp = NULL;
-    int nb_tiles = (size.x * size.y) * 0.1;
+    int nb_tiles = (size.x * size.y) * 0.07;
     int n = 0;
 
     while (n <= nb_tiles) {
