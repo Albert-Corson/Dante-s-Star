@@ -1,7 +1,7 @@
 # Dante's Star
 The goal of this project is to generate mazes (in a reasonable amount of time), solve them (in a reasonable amount of time), and print the solution
 
-*This is a school project*
+*This is a school project and it may only work under a Unix environment*
 
 ### How to test it
 First of all, what are *mazes*? Here is the maze format description:
